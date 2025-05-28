@@ -9,6 +9,10 @@ internal enum TokenType
     From,
     Identifier,
     Literal,
+    StringLiteral,
+    NumberLiteral,
+    BooleanLiteral,
+    NullLiteral,
     LeftBracket,
     RightBracket,
     Colon

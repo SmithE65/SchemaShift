@@ -10,8 +10,8 @@ internal class Scanner(string source)
         { "from", TokenType.From }
     };
 
-    private string _source = source;
-    private List<Token> _tokens = [];
+    private readonly string _source = source;
+    private readonly List<Token> _tokens = [];
     private int _start = 0;
     private int _current = 0;
     private int _line = 0;
@@ -24,7 +24,7 @@ internal class Scanner(string source)
             ScanNextToken();
         }
 
-        _tokens.Add(new Token(TokenType.EOF, _source.Length, 0, _line));
+        _tokens.Add(new Token(TokenType.EOF, _source, _source.Length, 0, _line));
         return _tokens;
     }
 
@@ -71,7 +71,7 @@ internal class Scanner(string source)
 
     private void AddToken(TokenType tokenType)
     {
-        _tokens.Add(new Token(tokenType, _start, _current - _start, _line));
+        _tokens.Add(new Token(tokenType, _source, _start, _current - _start, _line));
     }
 
     private void ScanIdentifier()
@@ -110,6 +110,6 @@ internal class Scanner(string source)
 
         // Advance past quote
         Advance();
-        AddToken(TokenType.Literal);
+        AddToken(TokenType.StringLiteral);
     }
 }
